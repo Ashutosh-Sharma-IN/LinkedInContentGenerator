@@ -1,7 +1,7 @@
 # linkedin_ai_app.py - Complete LinkedIn AI Content Generator
 import streamlit as st
 import pandas as pd
-import openai
+from openai import openai
 import json
 import os
 from datetime import datetime
@@ -540,4 +540,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
