@@ -1,7 +1,7 @@
 # linkedin_ai_app.py - Complete LinkedIn AI Content Generator
 import streamlit as st
 import pandas as pd
-import OpenAI  # ✅ This imports the OpenAI client class
+from openai import OpenAI
 import json
 import os
 from datetime import datetime
@@ -540,6 +540,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
