@@ -1,7 +1,7 @@
 # linkedin_ai_app.py - Complete LinkedIn AI Content Generator
 import streamlit as st
 import pandas as pd
-from openai import openai
+from openai import OpenAI  # ✅ This imports the OpenAI client class
 import json
 import os
 from datetime import datetime
@@ -281,7 +281,7 @@ class LinkedInAIApp:
             api_key, model, tone = self.setup_sidebar()
             
             if api_key:
-                client = openai.OpenAI(api_key=api_key)
+                client = OpenAI(api_key=api_key)
                 
                 prompt = f"""
                 Create a detailed infographic concept for LinkedIn about: {topic}
@@ -416,7 +416,7 @@ class LinkedInAIApp:
             st.error("❌ API key is required for processing!")
             return df
             
-        client = openai.OpenAI(api_key=api_key)
+        client = OpenAI(api_key=api_key)
         
         progress_bar = st.progress(0)
         total_rows = len(df)
@@ -460,7 +460,7 @@ class LinkedInAIApp:
         if not api_key:
             return [{"content": "Error: API key required", "style": "Error", "variation": 1}]
             
-        client = openai.OpenAI(api_key=api_key)
+        client = OpenAI(api_key=api_key)
         variations = []
         
         base_system_prompt = f"""
@@ -540,5 +540,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
