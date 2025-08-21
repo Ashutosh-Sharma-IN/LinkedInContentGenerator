@@ -9,7 +9,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 from dotenv import load_dotenv
 import io
-import base64
 
 # Load environment variables
 load_dotenv()
@@ -48,7 +47,7 @@ class LinkedInAIApp:
             api_key = st.sidebar.text_input("Enter OpenAI API Key", type="password", key="api_key")
         
         # Model selection
-        model_options = ["gpt-4o-mini", "gpt-4", "fine-tuned-model"]
+        model_options = ["gpt-4o-mini", "gpt-4", "gpt-3.5-turbo"]
         model = st.sidebar.selectbox("Select Model", model_options, key="model_select")
         
         # Tone options
@@ -375,17 +374,13 @@ class LinkedInAIApp:
                 # Theme analysis
                 if 'Theme' in df.columns:
                     st.subheader("🏷️ Content Themes")
-                    theme_performance = metrics_df.groupby('Theme').agg({
-                        'Likes': 'mean',
-                        'Comments': 'mean',
-                        'Post_Content': 'count'
-                    }).round(1)
+                    theme_counts = df['Theme'].value_counts()
                     
                     fig = px.bar(
-                        theme_performance.reset_index(),
-                        x='Theme',
-                        y='Likes',
-                        title="Average Likes by Theme"
+                        x=theme_counts.values,
+                        y=theme_counts.index,
+                        orientation='h',
+                        title="Post Count by Theme"
                     )
                     st.plotly_chart(fig, use_container_width=True)
         
