@@ -94,8 +94,8 @@ class LinkedInAIApp:
             
             if include_metrics:
                 template_data['Likes'] = [0] * num_posts
-                template_data['Comments'] =  * num_posts
-                template_data['Shares'] =  * num_posts
+                template_data['Comments'] = [0]  * num_posts
+                template_data['Shares'] = [0] * num_posts
                 template_data['Engagement_Rate'] = [0.0] * num_posts
             
             template_data['Reverse_Prompt'] = [''] * num_posts
@@ -540,3 +540,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
